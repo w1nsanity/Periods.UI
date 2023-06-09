@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Расписание</h1>
+
+  <div class="cards-container">
+
+    <div class="cards-form">
+
+      <form>
+
+        <div class="form-group">
+          <label>Название</label>
+          <input type="text" name="cardholderName" [(ngModel)]="period.title">
+        </div>
+        <div class="form-group">
+          <label>Время начала</label>
+          <input type="text" maxlength="6" name="cardNumber" [(ngModel)]="period.start_time">
+        </div>
+
+        <div class="form-group form-group-inline">
+          <div>
+            <label>Корпус</label>
+            <input type="text" maxlength="1" name="cvc" [(ngModel)]="period.building">
+          </div>
+          <div>
+            <label>День недели</label>
+            <input type="text" name="expiryMonth" [(ngModel)]="period.day_of_week">
+          </div>
+          <div>
+            <label>Номер недели</label>
+            <input type="text" maxlength="1" name="expiryYear" [(ngModel)]="period.week_number">
+          </div>
+        </div>
+        <div class="form-group form-group-buttons">
+          <button (click)="onCreateClick()">Добавить</button>
+          <button (click)="updatePeriod(period)">Изменить</button>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="cards-grid">
+      <div class="card-row" *ngFor="let period of periods">
+        <div class="card-row-details" (click)="populateForm(period)">
+          <span>{{ period.title }}</span>
+          <span>{{ period.start_time}}</span>
+        </div>
+        <div class="card-row-action">
+          <a (click)="deletePeriod(period.id)"><i class="fa-solid fa-trash-can"></i></a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+</div>
